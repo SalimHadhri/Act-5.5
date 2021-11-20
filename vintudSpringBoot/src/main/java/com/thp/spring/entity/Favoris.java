@@ -28,7 +28,7 @@ public class Favoris implements Serializable {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_favoris ;
+	private Long idFavoris ;
     
     
 	private String dateAjout ;
@@ -53,13 +53,13 @@ public class Favoris implements Serializable {
 	}
 	
 
-	public int getId_favoris() {
-		return id_favoris;
+	public Long getId_favoris() {
+		return idFavoris;
 	}
 
 
-	public void setId_favoris(int id_favoris) {
-		this.id_favoris = id_favoris;
+	public void setId_favoris(Long id_favoris) {
+		this.idFavoris = id_favoris;
 	}
 
 
@@ -76,8 +76,8 @@ public class Favoris implements Serializable {
 		this.dateAjout = dateAjout;
 	}
 
-	public Favoris(int id_favoris , String dateAjout) {
-		this.id_favoris = id_favoris;
+	public Favoris(Long id_favoris , String dateAjout) {
+		this.idFavoris = id_favoris;
 		this.dateAjout = dateAjout;
 	}
 
@@ -104,7 +104,7 @@ public class Favoris implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Favoris [id_favoris=" + id_favoris + ", dateAjout=" + dateAjout + ", userFavori=" + userFavori
+		return "Favoris [id_favoris=" + idFavoris + ", dateAjout=" + dateAjout + ", userFavori=" + userFavori
 				+ ", annonceFavori=" + annonceFavori + "]";
 	}
 

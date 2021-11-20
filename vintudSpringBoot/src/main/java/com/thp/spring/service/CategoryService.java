@@ -1,14 +1,21 @@
 package com.thp.spring.service;
 
+
+
+
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.thp.spring.dto.CategoryDto;
 import com.thp.spring.entity.Category;
 
-public interface CategoryService {
+
+
+ public interface CategoryService {
 	
 	
-	public void addCategory (Category category) ;
-	
-	
-	
+	public CategoryDto addCategory (CategoryDto categoryDto) ;
 	
 	public void AfficherCategories () ;
 	

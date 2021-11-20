@@ -36,7 +36,7 @@ public class Category implements Serializable {
    
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_category ;
+	private Long idCategory ;
     
     
 	private String name  ;
@@ -51,8 +51,8 @@ public class Category implements Serializable {
 	public Category() {
 	}
 
-	public int getId_category() {
-		return id_category;
+	public Long getId_category() {
+		return idCategory;
 	}
 
 	
@@ -61,12 +61,12 @@ public class Category implements Serializable {
 	
 
 
-	public void setId_category(int id_category) {
-		this.id_category = id_category;
+	public void setId_category(Long id_category) {
+		this.idCategory = id_category;
 	}
 
-	public Category(int id_category, String name, String description) {
-		this.id_category = id_category;
+	public Category(Long id_category, String name, String description) {
+		this.idCategory = id_category;
 		this.name = name;
 		this.description = description;
 	}
@@ -100,7 +100,7 @@ public class Category implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Category [id_category=" + id_category + ", name=" + name + ", description=" + description
+		return "Category [id_category=" + idCategory + ", name=" + name + ", description=" + description
 				+ ", annoncesCategory=" + annoncesCategory + "]";
 	}
 

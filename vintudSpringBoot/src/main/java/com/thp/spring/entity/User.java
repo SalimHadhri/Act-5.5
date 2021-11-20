@@ -32,7 +32,7 @@ public class User implements Serializable{
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_user ;
+	private Long idUser ;
 	
 	
 	
@@ -73,13 +73,13 @@ public class User implements Serializable{
 
 
 
-	public int getId_user() {
-		return id_user;
+	public Long getId_user() {
+		return idUser;
 	}
 
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setId_user(Long id_user) {
+		this.idUser = id_user;
 	}
 
 
@@ -190,10 +190,9 @@ public class User implements Serializable{
 
 
 
-	public User(int id_user, String firstname, String name, String pseudo, String mail, String u_password, String phone,
+	public User(Long id_user, String firstname, String name, String pseudo, String mail, String u_password, String phone,
 			String address, Role role) {
-		super();
-		this.id_user = id_user;
+		this.idUser = id_user;
 		this.firstname = firstname;
 		this.name = name;
 		this.pseudo = pseudo;
@@ -272,7 +271,7 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [id_user=" + id_user + ", firstname=" + firstname + ", name=" + name + ", pseudo=" + pseudo
+		return "User [id_user=" + idUser + ", firstname=" + firstname + ", name=" + name + ", pseudo=" + pseudo
 				+ ", mail=" + mail + ", u_password=" + u_password + ", phone=" + phone + ", address=" + address
 				+ ", role=" + role + ", recherches=" + recherches + ", annoncementsUser=" + annoncementsUser
 				+ ", favorisUser=" + favorisUser + "]";

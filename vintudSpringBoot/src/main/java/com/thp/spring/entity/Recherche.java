@@ -25,7 +25,7 @@ public class Recherche implements Serializable{
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id ;
+	private Long idRecherche ;
     
     
     
@@ -50,8 +50,8 @@ public class Recherche implements Serializable{
     private User userRecherche ;
 	
 	
-	public Recherche(int id, String type_habit, String taille, String couleur, float fourchette_prix) {
-		this.id = id;
+	public Recherche(Long id, String type_habit, String taille, String couleur, float fourchette_prix) {
+		this.idRecherche = id;
 		this.type_habit = type_habit;
 		this.taille = taille;
 		this.couleur = couleur;
@@ -59,13 +59,13 @@ public class Recherche implements Serializable{
 	}
 
 
-	public int getId() {
-		return id;
+	public Long getId() {
+		return idRecherche;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(Long id) {
+		this.idRecherche = id;
 	}
 
 
@@ -121,7 +121,7 @@ public class Recherche implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Recherche [id=" + id + ", type_habit=" + type_habit + ", taille=" + taille + ", couleur=" + couleur
+		return "Recherche [id=" + idRecherche + ", type_habit=" + type_habit + ", taille=" + taille + ", couleur=" + couleur
 				+ ", fourchette_prix=" + fourchette_prix + ", userRecherche=" + userRecherche + "]";
 	}
 

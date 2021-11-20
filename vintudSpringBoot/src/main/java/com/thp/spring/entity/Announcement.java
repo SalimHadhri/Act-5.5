@@ -29,7 +29,7 @@ public class Announcement  implements Serializable {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id ;
+	private Long idAnnouncement ;
 	
 	private String title  ;
 	
@@ -78,41 +78,14 @@ public class Announcement  implements Serializable {
 
 
 
-
-
-
-	//public CategoryController getCatControl() {
-		//return catControl;
-	//}
-
-
-
-//	public void setCatControl(CategoryController catControl) {
-	//	this.catControl = catControl;
-	//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public int getId() {
-		return id;
+	public Long getIdAnnouncement() {
+		return idAnnouncement;
 	}
 
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdAnnouncement(Long idAnnouncement) {
+		this.idAnnouncement = idAnnouncement;
 	}
 
 
@@ -141,10 +114,9 @@ public class Announcement  implements Serializable {
 
 
 
-	public Announcement(int id, String title, String description, int price, String picture,
+	public Announcement(Long id, String title, String description, int price, String picture,
 			String publication_date, boolean is_available, int view_number, String localisation) {
-		super();
-		this.id = id;
+		this.idAnnouncement = id;
 		this.title = title;
 		this.description = description;
 		this.price = price;
@@ -156,16 +128,6 @@ public class Announcement  implements Serializable {
 	}
 
 
-
-	public int getId_annoucement() {
-		return id;
-	}
-
-
-
-	public void setId_annoucement(int id_annoucement) {
-		this.id = id_annoucement;
-	}
 
 
 	public String getTitle() {
@@ -227,15 +189,6 @@ public class Announcement  implements Serializable {
 
 
 
-
-
-
-
-
-
-
-
-
 	public void setIs_available(boolean is_available) {
 		this.is_available = is_available;
 	}
@@ -269,7 +222,7 @@ public class Announcement  implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Announcement [id=" + id + ", title=" + title + ", description=" + description + ", price=" + price
+		return "Announcement [id=" + idAnnouncement + ", title=" + title + ", description=" + description + ", price=" + price
 				+ ", picture=" + picture + ", publication_date=" + publication_date + ", is_available=" + is_available
 				+ ", view_number=" + view_number + ", localisation=" + localisation + ", userAnnouncement="
 				+ userAnnouncement + ", categoryAnnonce=" + categoryAnnonce + "]";

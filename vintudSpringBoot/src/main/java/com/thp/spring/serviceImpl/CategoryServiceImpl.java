@@ -1,11 +1,13 @@
 package com.thp.spring.serviceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.thp.spring.dto.CategoryDto;
 import com.thp.spring.entity.Category;
+import com.thp.spring.helper.ModelMapperConverter;
 import com.thp.spring.repository.CategoryRepository;
 import com.thp.spring.service.CategoryService;
 
@@ -15,18 +17,24 @@ import com.thp.spring.service.CategoryService;
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class CategoryServiceImpl implements CategoryService{
 
+	
 	@Autowired
 	CategoryRepository categoryRepository ;
 	
-	
+
+
+	@Autowired
+	private ModelMapperConverter modelMapperConverter ;
 	
 	@Override
-	public void addCategory(Category category) {
+	public CategoryDto addCategory(CategoryDto categoryDto) {
+		
+		Category category = modelMapperConverter.categoryDtoToEntity(categoryDto) ;
+		Category categoryRendred =  categoryRepository.save(category) ;
+		CategoryDto categoryDtoRendred = modelMapperConverter.categoryEntityToDto(categoryRendred) ;
+		
+		return categoryDtoRendred ;
 
-		categoryRepository.addCategory(category);
-		
-		
-		
 		
 	}
 	
