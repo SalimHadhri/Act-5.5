@@ -23,19 +23,7 @@ public class CategoryDto {
 	public CategoryDto() {
 	}
 
-	public Long getId_category() {
-		return idCategory;
-	}
 
-	
-	
-	
-	
-
-
-	public void setId_category(Long id_category) {
-		this.idCategory = id_category;
-	}
 
 	public CategoryDto(Long id_category, String name, String description) {
 		this.idCategory = id_category;

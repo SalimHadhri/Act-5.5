@@ -16,10 +16,12 @@ import com.thp.spring.entity.Category;
 	
 	
 	public CategoryDto addCategory (CategoryDto categoryDto) ;
+	public  CategoryDto getCategoryById(Long id) ;
+	public CategoryDto deleteCategroyById (Long id) ;
+	public CategoryDto updateById(Long id, CategoryDto newCategoryDto) throws Exception ;	
 	
 	public void AfficherCategories () ;
 	
-	public  Category getCategoryById(int id) ;
 	
 	public int getIdByName (String name) ;
 	

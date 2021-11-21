@@ -51,19 +51,19 @@ public class Category implements Serializable {
 	public Category() {
 	}
 
-	public Long getId_category() {
+
+
+	public Long getIdCategory() {
 		return idCategory;
 	}
 
-	
-	
-	
-	
 
 
-	public void setId_category(Long id_category) {
-		this.idCategory = id_category;
+	public void setIdCategory(Long idCategory) {
+		this.idCategory = idCategory;
 	}
+
+
 
 	public Category(Long id_category, String name, String description) {
 		this.idCategory = id_category;
