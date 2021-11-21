@@ -4,6 +4,8 @@ package com.thp.spring.service;
 
 
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +21,8 @@ import com.thp.spring.entity.Category;
 	public  CategoryDto getCategoryById(Long id) ;
 	public CategoryDto deleteCategroyById (Long id) ;
 	public CategoryDto updateById(Long id, CategoryDto newCategoryDto) throws Exception ;	
+	public List<CategoryDto> getListCategory() ;
 	
-	public void AfficherCategories () ;
-	
-	
-	public int getIdByName (String name) ;
 	
 	
 

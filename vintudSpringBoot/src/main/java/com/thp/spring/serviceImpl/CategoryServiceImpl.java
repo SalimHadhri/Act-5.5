@@ -1,5 +1,7 @@
 package com.thp.spring.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,18 +77,24 @@ public class CategoryServiceImpl implements CategoryService{
 
 	
 	@Override
-	public void AfficherCategories() {
-		// TODO Auto-generated method stub
+	public List<CategoryDto> getListCategory() {
 		
+		List<Category> listCategory = categoryRepository.findAll() ;
+		
+		List<CategoryDto> listCategoryDtos = new ArrayList<CategoryDto>() ;
+		
+		for(int i =0 ; i<listCategory.size();i++) {
+			
+			listCategoryDtos.add(modelMapperConverter.categoryEntityToDto(listCategory.get(i))) ;
+			
+		}
+			
+		return listCategoryDtos;
 	}
+	
+	
 
 
-
-	@Override
-	public int getIdByName(String name) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 	

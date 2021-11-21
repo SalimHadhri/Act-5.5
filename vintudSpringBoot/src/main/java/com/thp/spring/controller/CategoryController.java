@@ -1,10 +1,13 @@
 package com.thp.spring.controller;
 
-import org.modelmapper.ModelMapper; 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,8 +28,8 @@ import com.thp.spring.service.CategoryService;
 
 
 
-@RestController
-@RequestMapping("/category")
+@Controller
+@RequestMapping("/categoryManagement")
 public class CategoryController {
 
 	
@@ -35,18 +41,49 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService ;
 	
-	
-	
-
-	
 	@Autowired
 	ModelMapperConverter modelMapperConverter ;
+
+
+    @RequestMapping({"/", "/welcomePage"})
+    public String home(Model model) {
+        model.addAttribute("message", "Gestion Categoriiiiies");
+        return "welcomePage";
+    }
+    
+    
+    @GetMapping(value = "/ListCategory") 
+    public String findAllCatgory(Model model) {
+    	try {
+    		
+    		List<CategoryDto> categoryDtosToView= categoryService.getListCategory() ;
+    		
+            model.addAttribute("listCategoriiiies", categoryDtosToView);
+			return  "ListCategory";
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+    }
+
+    
+    
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+	public String delete(@PathVariable("id") Long id) {
+		
+		categoryService.deleteCategroyById(id) ;
+		
+		return "redirect:/categoryManagement/ListCategory";
+	}
+    
+
+  
 			
 			
 	@PostMapping(value = "/addCategory")
 	public CategoryDto addCategory(@RequestBody CategoryDto categoryDto)   {	
 		try {
-			return categoryService.addCategory(categoryDto) ;
+			CategoryDto categoryDtoAdded = categoryService.addCategory(categoryDto)  ;
+			return categoryDtoAdded;
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
@@ -62,16 +99,7 @@ public class CategoryController {
 		}
     }
     
-    @DeleteMapping(value = "/deleteCategory/{id}")
-    public CategoryDto deleteCategoryById(@PathVariable Long id) {
-    	try {
-			return categoryService.deleteCategroyById(id) ;
-			
-		}catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
 
-    }
     
     @PutMapping(value = "/updateCategory/{id}")
     public CategoryDto updateCategoryById(@PathVariable Long id, @RequestBody CategoryDto newCategoryDto) {
@@ -83,6 +111,8 @@ public class CategoryController {
 		}
 
     }
+    				
+
    
 	
 }

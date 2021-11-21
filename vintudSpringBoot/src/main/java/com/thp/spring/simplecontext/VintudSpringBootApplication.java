@@ -40,7 +40,7 @@ import com.thp.spring.helper.ModelMapperConverter;
 
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.baeldung.boot.jsp")
 //@EnableConfigurationProperties
 @EnableAutoConfiguration
 @EntityScan(basePackages = {"com.thp.spring.entity"})
