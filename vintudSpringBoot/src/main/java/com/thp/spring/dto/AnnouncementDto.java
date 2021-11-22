@@ -1,17 +1,27 @@
 package com.thp.spring.dto;
 
+import javax.annotation.sql.DataSourceDefinition;
+import javax.persistence.ManyToOne;
+
+import com.thp.spring.entity.Category;
+import com.thp.spring.entity.User;
 
 
+
+
+@DataSourceDefinition(className = "Announcement", name = "AnnouncementDto")
 public class AnnouncementDto {
 	
 
+	
+	
 	private Long idAnnouncement ;
 	
 	private String title  ;
 	
 	private String description  ;
 	
-	
+		
 	private int price ;
 	
 	private String picture;
@@ -24,13 +34,47 @@ public class AnnouncementDto {
 	
 	private String localisation  ;
 	
+    private User userAnnouncement ;
 	
 	
+    private Category categoryAnnonce ;
 
 	
 
 
 	public AnnouncementDto() {
+	}
+
+
+
+
+
+	public User getUserAnnouncement() {
+		return userAnnouncement;
+	}
+
+
+
+
+
+	public void setUserAnnouncement(User userAnnouncement) {
+		this.userAnnouncement = userAnnouncement;
+	}
+
+
+
+
+
+	public Category getCategoryAnnonce() {
+		return categoryAnnonce;
+	}
+
+
+
+
+
+	public void setCategoryAnnonce(Category categoryAnnonce) {
+		this.categoryAnnonce = categoryAnnonce;
 	}
 
 
@@ -51,18 +95,7 @@ public class AnnouncementDto {
 
 
 
-	public AnnouncementDto(Long id, String title, String description, int price, String picture,
-			String publication_date, boolean is_available, int view_number, String localisation) {
-		this.idAnnouncement = id;
-		this.title = title;
-		this.description = description;
-		this.price = price;
-		this.picture = picture;
-		this.publication_date = publication_date;
-		this.is_available = is_available;
-		this.view_number = view_number;
-		this.localisation = localisation;
-	}
+
 
 
 

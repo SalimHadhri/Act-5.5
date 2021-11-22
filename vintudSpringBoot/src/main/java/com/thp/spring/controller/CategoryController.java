@@ -27,8 +27,8 @@ import com.thp.spring.helper.ModelMapperConverter;
 import com.thp.spring.service.CategoryService;
 
 
-
-@Controller
+@RestController  // ======> json
+//@Controller   ======> jsp
 @RequestMapping("/categoryManagement")
 public class CategoryController {
 
@@ -44,14 +44,14 @@ public class CategoryController {
 	@Autowired
 	ModelMapperConverter modelMapperConverter ;
 
-
+/********************************************************************************************************************************/
     @RequestMapping({"/", "/welcomePage"})
     public String home(Model model) {
         model.addAttribute("message", "Gestion Categoriiiiies");
         return "welcomePage";
     }
     
-    
+    /*************************************************************************************************************************************/
     @GetMapping(value = "/ListCategory") 
     public String findAllCatgory(Model model) {
     	try {
@@ -66,19 +66,55 @@ public class CategoryController {
     }
 
     
+    /********************************************************************************************************************************/
     
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") Long id) {
-		
+		try {
 		categoryService.deleteCategroyById(id) ;
 		
 		return "redirect:/categoryManagement/ListCategory";
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
 	}
-    
+	
+	
+	/*******************************************************************************************************************************/
+	
+  /*  @PutMapping(value = "/updateCategory/{id}")
+    public CategoryDto updateCategoryById(@PathVariable Long id, @RequestBody CategoryDto newCategoryDto) {
+    	try {
+			return categoryService.updateById(id, newCategoryDto) ;
+			
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
 
-  
+    }*/
+    
+    @GetMapping(value = "updateCategory/{id}/{name}/{description}")
+    public String updateCategoryById(@PathVariable("id") Long id ,String name, String description ) {
+    	try {
+    		
+    		CategoryDto categoryDto = new CategoryDto(id, name, description) ;
+			 categoryService.updateById(id, categoryDto) ;
+			return "redirect:/categoryManagement/ListCategory";
+
 			
-			
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
+    }
+    
+	
+	
+	
+	
+	
+	/*******************************************************************************************************/
+	/*
 	@PostMapping(value = "/addCategory")
 	public CategoryDto addCategory(@RequestBody CategoryDto categoryDto)   {	
 		try {
@@ -89,6 +125,33 @@ public class CategoryController {
 		}
 					
 	}
+	*/
+	
+	
+	@PostMapping(value = "/addCategory")
+	public CategoryDto addCategory(@RequestBody CategoryDto categoryDto)   {	
+		try {
+			CategoryDto categoryDtoAdded = categoryService.addCategory(categoryDto)  ;
+			return categoryDtoAdded;
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+					
+	}
+	
+/***********************************************************************************************************/	
+	
+	
+	
+	
+	
+    
+
+
+  
+			
+			
+
 	
     @GetMapping(value = "/findCategory/{id}")
     public CategoryDto findCategoryById(@PathVariable Long id) {
@@ -101,16 +164,7 @@ public class CategoryController {
     
 
     
-    @PutMapping(value = "/updateCategory/{id}")
-    public CategoryDto updateCategoryById(@PathVariable Long id, @RequestBody CategoryDto newCategoryDto) {
-    	try {
-			return categoryService.updateById(id, newCategoryDto) ;
-			
-		}catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
 
-    }
     				
 
    

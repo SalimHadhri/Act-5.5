@@ -2,13 +2,13 @@ package com.thp.spring.dto;
 
 import javax.annotation.sql.DataSourceDefinition;
 
+
+
+
 @DataSourceDefinition(className = "Category", name = "CategoryDto")
 public class CategoryDto {
 
 	
-	
-
-
 
 
 	private Long idCategory ;

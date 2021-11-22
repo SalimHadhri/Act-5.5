@@ -51,8 +51,19 @@ public class Announcement  implements Serializable {
 	
 	
 
+	@ManyToOne
+    private User userAnnouncement ;
 	
 	
+    @ManyToOne
+    private Category categoryAnnonce ;
+
+    
+    
+	
+
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -62,17 +73,15 @@ public class Announcement  implements Serializable {
 	public Announcement() {
 	}
 
+	
+	
+
+
+
 
 	//CategoryController catControl = new CategoryController() ;
 	
 	
-
-	@ManyToOne
-    private User userAnnouncement ;
-	
-	
-    @ManyToOne
-    private Category categoryAnnonce ;
 
 
 
@@ -112,20 +121,6 @@ public class Announcement  implements Serializable {
 		this.categoryAnnonce = categoryAnnonce;
 	}
 
-
-
-	public Announcement(Long id, String title, String description, int price, String picture,
-			String publication_date, boolean is_available, int view_number, String localisation) {
-		this.idAnnouncement = id;
-		this.title = title;
-		this.description = description;
-		this.price = price;
-		this.picture = picture;
-		this.publication_date = publication_date;
-		this.is_available = is_available;
-		this.view_number = view_number;
-		this.localisation = localisation;
-	}
 
 
 

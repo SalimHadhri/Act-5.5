@@ -27,26 +27,13 @@
              
 			<td> 
 			
-				<a href="${pageContext.request.contextPath }/categoryManagement/delete/${category.getIdCategory()}" >Delete</a>
-				
+			<a href="${pageContext.request.contextPath }/categoryManagement/delete/${category.getIdCategory()}" >Delete</a>
 			</td>
         
-   			<td> 
-			
-			<a href="${pageContext.request.contextPath }/categoryManagement/updateCategory/${category.getIdCategory()}/${Name}/${Description}" >update</a>	<input type="text"  name="nameCC" value="Name" /> 	<input type="text"  name="descriptionCC" value="Description" /> 
-			
-			</td>
+            
            </tr>    
            
         </c:forEach>
     </table>
-
-
-
-    
-		 				
-							  
-			
-    
 </body>
 </html>
