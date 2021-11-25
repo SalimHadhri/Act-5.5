@@ -42,10 +42,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto deleteUser(Long id) {
 
-		UserDto userDtoDeleted = findUserById(id) ;
+		UserDto userDtoDeleted = findUserById(id);
 		userRepository.deleteById(id);
 
-		return userDtoDeleted ;
+		return userDtoDeleted;
 	}
 
 	@Override
@@ -65,14 +65,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto updateUser(Long id, UserDto userDto) {
-		
-		
-		userDto.setIdUser(id); 
-		
-		
-		return  addUser(userDto) ;
+
+		userDto.setIdUser(id);
+
+		return addUser(userDto);
 	}
-	
-	
 
 }

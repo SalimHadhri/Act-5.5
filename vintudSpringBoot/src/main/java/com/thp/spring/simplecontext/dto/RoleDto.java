@@ -1,18 +1,10 @@
 package com.thp.spring.simplecontext.dto;
 
-import java.util.Collection;
-
-import com.thp.spring.simplecontext.entity.User;
-
 public class RoleDto {
 
 	private Long idRole;
 
 	private String nom;
-	
-	
-	private Collection<User> usersRole;
-
 
 	public RoleDto() {
 	}
@@ -50,21 +42,5 @@ public class RoleDto {
 	public String toString() {
 		return "RoleDto [idRole=" + idRole + ", nom=" + nom + "]";
 	}
-
-	public Collection<User> getUsersRole() {
-		return usersRole;
-	}
-
-	public void setUsersRole(Collection<User> usersRole) {
-		this.usersRole = usersRole;
-	}
-
-	public RoleDto(Long idRole, String nom, Collection<User> usersRole) {
-		this.idRole = idRole;
-		this.nom = nom;
-		this.usersRole = usersRole;
-	}
-	
-	
 
 }

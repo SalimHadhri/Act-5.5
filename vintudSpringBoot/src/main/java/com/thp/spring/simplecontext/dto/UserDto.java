@@ -1,13 +1,15 @@
 package com.thp.spring.simplecontext.dto;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import com.thp.spring.simplecontext.entity.Announcement;
 import com.thp.spring.simplecontext.entity.Favoris;
 import com.thp.spring.simplecontext.entity.Recherche;
-import com.thp.spring.simplecontext.entity.Role;
 
-public class UserDto {
+public class UserDto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long idUser;
 
@@ -15,32 +17,48 @@ public class UserDto {
 	private String name;
 	private String pseudo;
 	private String mail;
-	private String u_password;
+	private String password;
 	private String phone;
 	private String address;
-	
-	
-	private Role role;
-	
-	private Collection<Recherche> recherches;
-	private Collection<Announcement> annoncementsUser;
-	private Collection<Favoris> favorisUser;
 
+	private String roleUser;
+
+	private Collection<Recherche> recherches;
+
+	private Collection<Announcement> annoncementsUser;
+
+	private Collection<Favoris> favorisUser;
 
 	public UserDto() {
 	}
 
-	public Long getId_user() {
-		return idUser;
-	}
 
-	public void setId_user(Long id_user) {
-		this.idUser = id_user;
-	}
 
 	public String getFirstname() {
 		return firstname;
 	}
+
+
+
+
+	public UserDto(Long idUser, String firstname, String name, String pseudo, String mail, String password,
+			String phone, String address, String roleUser, Collection<Recherche> recherches,
+			Collection<Announcement> annoncementsUser, Collection<Favoris> favorisUser) {
+		this.idUser = idUser;
+		this.firstname = firstname;
+		this.name = name;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.roleUser = roleUser;
+		this.recherches = recherches;
+		this.annoncementsUser = annoncementsUser;
+		this.favorisUser = favorisUser;
+	}
+
+
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
@@ -70,13 +88,7 @@ public class UserDto {
 		this.mail = mail;
 	}
 
-	public String getU_password() {
-		return u_password;
-	}
 
-	public void setU_password(String u_password) {
-		this.u_password = u_password;
-	}
 
 	public String getPhone() {
 		return phone;
@@ -94,31 +106,20 @@ public class UserDto {
 		this.address = address;
 	}
 
-	public Long getIdUser() {
-		return idUser;
+
+
+
+	public String getRoleUser() {
+		return roleUser;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+
+
+	public void setRoleUser(String roleUser) {
+		this.roleUser = roleUser;
 	}
 
 
-
-	@Override
-	public String toString() {
-		return "UserDto [idUser=" + idUser + ", firstname=" + firstname + ", name=" + name + ", pseudo=" + pseudo
-				+ ", mail=" + mail + ", u_password=" + u_password + ", phone=" + phone + ", address=" + address
-				+ ", role=" + role + ", recherches=" + recherches + ", annoncementsUser=" + annoncementsUser
-				+ ", favorisUser=" + favorisUser + "]";
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
 
 	public Collection<Recherche> getRecherches() {
 		return recherches;
@@ -144,23 +145,38 @@ public class UserDto {
 		this.favorisUser = favorisUser;
 	}
 
-	public UserDto(Long idUser, String firstname, String name, String pseudo, String mail, String u_password,
-			String phone, String address, Role role, Collection<Recherche> recherches,
-			Collection<Announcement> annoncementsUser, Collection<Favoris> favorisUser) {
-		this.idUser = idUser;
-		this.firstname = firstname;
-		this.name = name;
-		this.pseudo = pseudo;
-		this.mail = mail;
-		this.u_password = u_password;
-		this.phone = phone;
-		this.address = address;
-		this.role = role;
-		this.recherches = recherches;
-		this.annoncementsUser = annoncementsUser;
-		this.favorisUser = favorisUser;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+
+
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
 	
 	
+
 }

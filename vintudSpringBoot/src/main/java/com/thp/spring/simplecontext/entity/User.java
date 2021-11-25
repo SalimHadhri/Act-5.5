@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,12 +24,13 @@ public class User implements Serializable {
 	private String name;
 	private String pseudo;
 	private String mail;
-	private String u_password;
+	private String password;
 	private String phone;
 	private String address;
 
-	@ManyToOne
-	private Role role;
+	private String roleUser;
+	
+	
 
 	@OneToMany(mappedBy = "userRecherche")
 	private Collection<Recherche> recherches;
@@ -44,13 +44,7 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public Long getId_user() {
-		return idUser;
-	}
 
-	public void setId_user(Long id_user) {
-		this.idUser = id_user;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -84,13 +78,7 @@ public class User implements Serializable {
 		this.mail = mail;
 	}
 
-	public String getU_password() {
-		return u_password;
-	}
 
-	public void setU_password(String u_password) {
-		this.u_password = u_password;
-	}
 
 	public String getPhone() {
 		return phone;
@@ -108,25 +96,23 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public Role getRole() {
-		return role;
+
+
+
+	public Long getIdUser() {
+		return idUser;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 
-	public User(Long id_user, String firstname, String name, String pseudo, String mail, String u_password,
-			String phone, String address, Role role) {
-		this.idUser = id_user;
-		this.firstname = firstname;
-		this.name = name;
-		this.pseudo = pseudo;
-		this.mail = mail;
-		this.u_password = u_password;
-		this.phone = phone;
-		this.address = address;
-		this.role = role;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Collection<Recherche> getRecherches() {
@@ -153,16 +139,42 @@ public class User implements Serializable {
 		this.favorisUser = favorisUser;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id_user=" + idUser + ", firstname=" + firstname + ", name=" + name + ", pseudo=" + pseudo
-				+ ", mail=" + mail + ", u_password=" + u_password + ", phone=" + phone + ", address=" + address
-				+ ", role=" + role + ", recherches=" + recherches + ", annoncementsUser=" + annoncementsUser
-				+ ", favorisUser=" + favorisUser + "]";
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
+
+	public User(Long idUser, String firstname, String name, String pseudo, String mail, String password, String phone,
+			String address, String roleUser, Collection<Recherche> recherches,
+			Collection<Announcement> annoncementsUser, Collection<Favoris> favorisUser) {
+		this.idUser = idUser;
+		this.firstname = firstname;
+		this.name = name;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.roleUser = roleUser;
+		this.recherches = recherches;
+		this.annoncementsUser = annoncementsUser;
+		this.favorisUser = favorisUser;
+	}
+
+
+
+	public String getRoleUser() {
+		return roleUser;
+	}
+
+
+
+	public void setRoleUser(String roleUser) {
+		this.roleUser = roleUser;
+	}
+	
+	
 
 }

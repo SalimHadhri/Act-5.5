@@ -1,13 +1,11 @@
 package com.thp.spring.simplecontext.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +23,6 @@ public class Role implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	@OneToMany(mappedBy = "role")
-	private Collection<User> usersRole;
 
 	public Role() {
 	}
@@ -51,19 +46,6 @@ public class Role implements Serializable {
 	public Role(Long role_id, String nom) {
 		this.idRole = role_id;
 		this.nom = nom;
-	}
-
-	public Collection<User> getUsersRole() {
-		return usersRole;
-	}
-
-	public void setUsersRole(Collection<User> usersRole) {
-		this.usersRole = usersRole;
-	}
-
-	@Override
-	public String toString() {
-		return "Role [role_id=" + idRole + ", nom=" + nom + ", usersRole=" + usersRole + "]";
 	}
 
 }
