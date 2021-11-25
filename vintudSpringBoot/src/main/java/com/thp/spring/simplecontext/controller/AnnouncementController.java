@@ -20,7 +20,7 @@ import com.thp.spring.simplecontext.service.AnnouncementService;
 public class AnnouncementController {
 
 	@Autowired
-	AnnouncementService announcementService;
+	public AnnouncementService announcementService;
 
 	@PostMapping(value = "/addAnnouncement")
 	public AnnouncementDto addAnnouncement(@RequestBody AnnouncementDto announcementDto) {

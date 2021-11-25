@@ -1,27 +1,19 @@
 package com.thp.spring.simplecontext.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import com.thp.spring.simplecontext.entity.User;
+import com.thp.spring.simplecontext.dto.UserDto;
 
 public interface UserService {
 
-	public int creerUnCompte(User user);
-
-	public User chooseUserSpecifications();
-
-	public void afficherRoles();
-
-	public User connectAccount(String email, String pwd);
-
-	public void modificationInformationsPersonnelles(String email, String pwd);
-
-	public void afficherUtilisateurs();
-
-	public ArrayList<User> findAllUsers();
-
-	public int findIdRoleByName(String name);
-
-	public boolean emailExist(String email);
+	public UserDto addUser(UserDto userDto);
+	
+	public UserDto deleteUser(Long id) ;
+	
+	public UserDto findUserById (Long id) ;
+	
+	public List<UserDto> findAllUser() ;
+	
+	public UserDto updateUser(Long id , UserDto userDto) ;
 
 }

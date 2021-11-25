@@ -40,14 +40,14 @@ public class VintudSpringBootApplicationTests {
 	public void findAnnouncementByIdAPI() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/announcementManagement/findAnnouncement/{id}", 1)
 				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.idAnnouncement").value(1));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.idAnnouncement").value(20));
 	}
 
 	@Test
 	public void addAnnouncementAPI() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.post("/announcementManagement/addAnnouncement")
-				.content(asJsonString(new AnnouncementDto("soso", "soso", 29, "lololo", "2019", false, 27,
-						"testttt", null, null)))
+				.content(asJsonString(new AnnouncementDto("new new ", "new new ", 29, "new new ", "2019", true, 27,
+						"new new ", null, null)))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated()).andExpect(MockMvcResultMatchers.jsonPath("$.idAnnouncement").exists());
 	}
@@ -64,8 +64,8 @@ public class VintudSpringBootApplicationTests {
 	public void updateAnnouncementByIdAPI() throws Exception {		
 		
 		 mvc.perform( MockMvcRequestBuilders
-			      .put("/announcementManagement/updateAnnouncement/{id}", 16)
-			      .content(asJsonString(new AnnouncementDto("didi","didi", 16, "didi","2019", false, 16, "didi",null,null)))
+			      .put("/announcementManagement/updateAnnouncement/{id}", 26)
+			      .content(asJsonString(new AnnouncementDto("26dd","2aa6", 16, "26ee","2019", false, 16, "2gg6",null,null)))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
 			      .andExpect(status().isOk())
@@ -87,7 +87,7 @@ public class VintudSpringBootApplicationTests {
 	@Test
 	public void deleteAnnouncementAPI() throws Exception {	
 		
-		  mvc.perform( MockMvcRequestBuilders.delete("/announcementManagement/deleteAnnouncement/{id}", 14) )
+		  mvc.perform( MockMvcRequestBuilders.delete("/announcementManagement/deleteAnnouncement/{id}", 1) )
 	        .andExpect(status().isAccepted());
 	}
 	
