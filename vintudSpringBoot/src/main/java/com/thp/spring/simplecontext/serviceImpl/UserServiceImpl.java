@@ -71,4 +71,18 @@ public class UserServiceImpl implements UserService {
 		return addUser(userDto);
 	}
 
+	@Override
+	public UserDto findByUsername(String username) {
+		
+        List<UserDto> users = findAllUser() ;
+        
+        for (int i = 0 ; i<users.size(); i++){
+            if(users.get(i).getUsername().equals(username)){
+                return users.get(i) ;
+            }
+        }
+        return null ;
+		
+	}
+
 }

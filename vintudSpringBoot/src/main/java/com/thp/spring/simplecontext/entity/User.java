@@ -1,7 +1,10 @@
 package com.thp.spring.simplecontext.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "`user`")
@@ -20,17 +25,18 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idUser;
 
-	private String firstname;
-	private String name;
+	private String username;
 	private String pseudo;
 	private String mail;
 	private String password;
 	private String phone;
 	private String address;
 
-	private String roleUser;
-	
-	
+	@JsonProperty("roles")
+	private String roles = "";
+	private String permissions = "";
+
+	private int active;
 
 	@OneToMany(mappedBy = "userRecherche")
 	private Collection<Recherche> recherches;
@@ -42,24 +48,6 @@ public class User implements Serializable {
 	private Collection<Favoris> favorisUser;
 
 	public User() {
-	}
-
-
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPseudo() {
@@ -78,8 +66,6 @@ public class User implements Serializable {
 		this.mail = mail;
 	}
 
-
-
 	public String getPhone() {
 		return phone;
 	}
@@ -95,9 +81,6 @@ public class User implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-
 
 	public Long getIdUser() {
 		return idUser;
@@ -139,42 +122,72 @@ public class User implements Serializable {
 		this.favorisUser = favorisUser;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	public String getRoles() {
+		return roles;
+	}
 
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
 
-	public User(Long idUser, String firstname, String name, String pseudo, String mail, String password, String phone,
-			String address, String roleUser, Collection<Recherche> recherches,
+	public String getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(String permissions) {
+		this.permissions = permissions;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public List<String> getRoleList() {
+		if (this.roles.length() > 0) {
+			return Arrays.asList(this.roles.split(","));
+		}
+		return new ArrayList<>();
+	}
+
+	public List<String> getPermissionList() {
+		if (this.permissions.length() > 0) {
+			return Arrays.asList(this.permissions.split(","));
+		}
+		return new ArrayList<>();
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+	public User(Long idUser, String username, String pseudo, String mail, String password, String phone, String address,
+			String roles, String permissions, int active, Collection<Recherche> recherches,
 			Collection<Announcement> annoncementsUser, Collection<Favoris> favorisUser) {
 		this.idUser = idUser;
-		this.firstname = firstname;
-		this.name = name;
+		this.username = username;
 		this.pseudo = pseudo;
 		this.mail = mail;
 		this.password = password;
 		this.phone = phone;
 		this.address = address;
-		this.roleUser = roleUser;
+		this.roles = roles;
+		this.permissions = permissions;
+		this.active = active;
 		this.recherches = recherches;
 		this.annoncementsUser = annoncementsUser;
 		this.favorisUser = favorisUser;
 	}
-
-
-
-	public String getRoleUser() {
-		return roleUser;
-	}
-
-
-
-	public void setRoleUser(String roleUser) {
-		this.roleUser = roleUser;
-	}
-	
-	
 
 }

@@ -1,7 +1,10 @@
 package com.thp.spring.simplecontext.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import com.thp.spring.simplecontext.entity.Announcement;
 import com.thp.spring.simplecontext.entity.Favoris;
@@ -14,14 +17,16 @@ public class UserDto implements Serializable {
 	private Long idUser;
 
 	private String firstname;
-	private String name;
+	private String username;
 	private String pseudo;
 	private String mail;
 	private String password;
 	private String phone;
 	private String address;
+	private int active;
 
-	private String roleUser;
+	private String roles = "";
+	private String permissions = "";
 
 	private Collection<Recherche> recherches;
 
@@ -32,44 +37,12 @@ public class UserDto implements Serializable {
 	public UserDto() {
 	}
 
-
-
 	public String getFirstname() {
 		return firstname;
 	}
 
-
-
-
-	public UserDto(Long idUser, String firstname, String name, String pseudo, String mail, String password,
-			String phone, String address, String roleUser, Collection<Recherche> recherches,
-			Collection<Announcement> annoncementsUser, Collection<Favoris> favorisUser) {
-		this.idUser = idUser;
-		this.firstname = firstname;
-		this.name = name;
-		this.pseudo = pseudo;
-		this.mail = mail;
-		this.password = password;
-		this.phone = phone;
-		this.address = address;
-		this.roleUser = roleUser;
-		this.recherches = recherches;
-		this.annoncementsUser = annoncementsUser;
-		this.favorisUser = favorisUser;
-	}
-
-
-
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPseudo() {
@@ -88,8 +61,6 @@ public class UserDto implements Serializable {
 		this.mail = mail;
 	}
 
-
-
 	public String getPhone() {
 		return phone;
 	}
@@ -105,21 +76,6 @@ public class UserDto implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-
-
-	public String getRoleUser() {
-		return roleUser;
-	}
-
-
-
-	public void setRoleUser(String roleUser) {
-		this.roleUser = roleUser;
-	}
-
-
 
 	public Collection<Recherche> getRecherches() {
 		return recherches;
@@ -149,34 +105,87 @@ public class UserDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 
 	public Long getIdUser() {
 		return idUser;
 	}
 
-
-
 	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
-
-
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	public String getRoles() {
+		return roles;
+	}
 
-	
-	
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public String getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(String permissions) {
+		this.permissions = permissions;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public List<String> getRoleList() {
+		if (this.roles.length() > 0) {
+			return Arrays.asList(this.roles.split(","));
+		}
+		return new ArrayList<>();
+	}
+
+	public List<String> getPermissionList() {
+		if (this.permissions.length() > 0) {
+			return Arrays.asList(this.permissions.split(","));
+		}
+		return new ArrayList<>();
+	}
+
+	public UserDto(Long idUser, String firstname, String username, String pseudo, String mail, String password,
+			String phone, String address, int active, String roles, String permissions,
+			Collection<Recherche> recherches, Collection<Announcement> annoncementsUser,
+			Collection<Favoris> favorisUser) {
+		super();
+		this.idUser = idUser;
+		this.firstname = firstname;
+		this.username = username;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.active = active;
+		this.roles = roles;
+		this.permissions = permissions;
+		this.recherches = recherches;
+		this.annoncementsUser = annoncementsUser;
+		this.favorisUser = favorisUser;
+	}
 
 }

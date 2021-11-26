@@ -11,4 +11,6 @@ import com.thp.spring.simplecontext.entity.User;
 @Transactional(propagation = Propagation.MANDATORY)
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findByUsername(String userName);
+
 }
