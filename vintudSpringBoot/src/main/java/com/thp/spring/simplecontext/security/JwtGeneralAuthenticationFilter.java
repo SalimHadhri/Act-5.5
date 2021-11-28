@@ -3,12 +3,11 @@ package com.thp.spring.simplecontext.security;
 
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thp.spring.simplecontext.entity.LoginViewModel;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -19,12 +18,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JwtGeneralAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 
     private AuthenticationManager authenticationManager;
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JwtGeneralAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 
@@ -83,5 +82,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         // response back to the user
     }
 
-    //the rest will be handled by spring security
+
+
+
 }

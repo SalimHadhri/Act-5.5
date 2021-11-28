@@ -74,15 +74,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto findByUsername(String username) {
 		
-        List<UserDto> users = findAllUser() ;
+        List<UserDto> usersDto = findAllUser() ;
         
-        for (int i = 0 ; i<users.size(); i++){
-            if(users.get(i).getUsername().equals(username)){
-                return users.get(i) ;
+        for (int i = 0 ; i<usersDto.size(); i++){
+            if(usersDto.get(i).getUsername().equals(username)){
+                return usersDto.get(i) ;
             }
         }
         return null ;
 		
 	}
+
+	
+
+
 
 }

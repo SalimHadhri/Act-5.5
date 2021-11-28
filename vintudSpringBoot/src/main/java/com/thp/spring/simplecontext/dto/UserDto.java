@@ -16,7 +16,6 @@ public class UserDto implements Serializable {
 
 	private Long idUser;
 
-	private String firstname;
 	private String username;
 	private String pseudo;
 	private String mail;
@@ -24,6 +23,7 @@ public class UserDto implements Serializable {
 	private String phone;
 	private String address;
 	private int active;
+	private String firstname ;
 
 	private String roles = "";
 	private String permissions = "";

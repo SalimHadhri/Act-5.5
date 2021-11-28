@@ -1,4 +1,5 @@
-package com.thp.spring.simplecontext.entity;
+package com.thp.spring.simplecontext.security;
+
 
 //first request we will send this model in the post method as json body
 public class LoginViewModel {

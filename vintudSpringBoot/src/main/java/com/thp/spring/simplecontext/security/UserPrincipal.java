@@ -1,6 +1,6 @@
 package com.thp.spring.simplecontext.security;
-
-import java.util.ArrayList; 
+ 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.thp.spring.simplecontext.dto.UserDto;
 import com.thp.spring.simplecontext.entity.User;
 
 public class UserPrincipal implements UserDetails {
@@ -25,12 +26,14 @@ public class UserPrincipal implements UserDetails {
 	public UserPrincipal() {
 	}
 
-	public User getUserDto() {
+
+
+	public User getUser() {
 		return user;
 	}
 
-	public void setUserDto(User userDto) {
-		this.user = userDto;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public static long getSerialversionuid() {

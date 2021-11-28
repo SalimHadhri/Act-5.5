@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -47,8 +49,35 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "userFavori")
 	private Collection<Favoris> favorisUser;
 
+	private String firstname ;
+	
 	public User() {
 	}
+	
+	
+	
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+
+
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+
+
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
+
+
 
 	public String getPseudo() {
 		return pseudo;

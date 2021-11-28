@@ -3,6 +3,7 @@ package com.thp.spring.simplecontext.service;
 import java.util.List;
 
 import com.thp.spring.simplecontext.dto.UserDto;
+import com.thp.spring.simplecontext.entity.User;
 
 public interface UserService {
 
@@ -17,6 +18,7 @@ public interface UserService {
 	public UserDto updateUser(Long id , UserDto userDto) ;
 	
 	public UserDto findByUsername(String username) ;
+	
 	
 	
 

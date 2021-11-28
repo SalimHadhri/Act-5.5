@@ -1,16 +1,15 @@
 package com.thp.spring.simplecontext.security;
 
-
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.thp.spring.simplecontext.dto.UserDto;
 import com.thp.spring.simplecontext.entity.User;
-import com.thp.spring.simplecontext.repository.UserRepository;
-
+import com.thp.spring.simplecontext.service.UserService;
 
 //UserPrincipalDetailsService extract user from an xl file /database/in memory
 //convert user to userPrincipal that implements the userDetails class
@@ -18,23 +17,25 @@ import com.thp.spring.simplecontext.repository.UserRepository;
 @Service
 public class UserPrincipalDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository ;
+	@Autowired
+	public UserService userService;
 
-    public UserPrincipalDetailsService() {
-    }
+	private ModelMapper modelMapper = new ModelMapper();
 
-    public UserPrincipalDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	
+	public UserPrincipalDetailsService() {
+	}
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+	public UserPrincipalDetailsService(UserService userService) {
+		this.userService = userService;
+	}
 
-        User user = this.userRepository.findByUsername(s) ;
-        UserPrincipal userPrincipal = new UserPrincipal(user) ;
+	@Override
+	public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
+		UserDto userDto = userService.findByUsername(s);
+		UserPrincipal userPrincipal = new UserPrincipal(modelMapper.map(userDto, User.class));
 
-        return userPrincipal;
-    }
+		return userPrincipal;
+	}
 }

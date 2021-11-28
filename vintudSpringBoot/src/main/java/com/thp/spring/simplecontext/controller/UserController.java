@@ -23,106 +23,93 @@ import org.springframework.web.bind.annotation.RestController;
 import com.auth0.jwt.JWT;
 import com.thp.spring.simplecontext.dto.UserDto;
 import com.thp.spring.simplecontext.entity.User;
+import com.thp.spring.simplecontext.repository.UserRepository;
 import com.thp.spring.simplecontext.security.UserPrincipal;
 import com.thp.spring.simplecontext.service.UserService;
-
-
 
 @RestController
 @RequestMapping("/userManagement")
 public class UserController {
 
-
-
-	
 	@Autowired
-	public UserService userService ;
+	public UserService userService;
 
-	
+	private ModelMapper modelMapper = new ModelMapper();
+
+
 	@PostMapping(value = "/addUser")
-	public  UserDto addUser(@RequestBody UserDto userDto) {
+	public UserDto addUser(@RequestBody UserDto userDto) {
 
-		return userService.addUser(userDto) ;
+		return userService.addUser(userDto);
 
 	}
 
 	@GetMapping(value = "/ListAllUser")
 	public List<UserDto> findAllUsers() {
 
-
-		return  userService.findAllUser();
+		return userService.findAllUser();
 
 	}
 
 	@GetMapping(value = "/findUser/{id}")
 	public UserDto findUserById(@PathVariable Long id) {
-		return userService.findUserById(id) ;
+		return userService.findUserById(id);
 
 	}
 
 	@DeleteMapping(value = "/deleteUser/{id}")
 	public UserDto delete(@PathVariable Long id) {
-		return userService.deleteUser(id) ;
+		return userService.deleteUser(id);
 	}
 
 	@PutMapping(value = "/updateUser/{id}")
-	public UserDto updateUserById(@PathVariable Long id, @RequestBody UserDto userDto) 
-			{
+	public UserDto updateUserById(@PathVariable Long id, @RequestBody UserDto userDto) {
 
-		return userService.updateUser(id, userDto) ;
+		return userService.updateUser(id, userDto);
 
 	}
-	private ModelMapper modelMapper = new ModelMapper();
 
-	
-	 @PostMapping("/auth")
-	    public Map<String, String> GenerateToken(@RequestBody UserDto userDto)  {
+	// Get USER credentials
+	// return a map with the username, role, token and user_id related to this USER
+	// return an exception in case of non existing USER with these credentials
+	@PostMapping("/auth")
+	public Map<String, String> GenerateToken(@RequestBody UserDto userDto) {
 
-	        List<UserDto> userDtos = userService.findAllUser() ;
+		List<UserDto> l = userService.findAllUser() ;
+		
+		
 
-	        for (int i = 0; i < userDtos.size(); i++) {
-	            if ((userDto.getUsername().equals(userDtos.get(i).getUsername())) && (userDto.getPassword().equals(userDtos.get(i).getPassword()))) {
-	                UserPrincipal principal = new UserPrincipal(modelMapper.map(userDto, User.class));
-	                String token = JWT.create()
-	                        .withSubject(principal.getUsername())
-	                        .withExpiresAt(new Date(System.currentTimeMillis() + com.thp.spring.simplecontext.security.JwtProperties.EXPIRATION_TIME)) //EXPIRATION_TIME : property created earlier
-	                        .sign(HMAC512(com.thp.spring.simplecontext.security.JwtProperties.SECRET.getBytes()));
-	                String auth = "";
-	                for (Iterator<? extends GrantedAuthority> iter = principal.getAuthorities().iterator(); iter.hasNext(); ) {
-	                    GrantedAuthority element = iter.next();
-	                    auth = auth + element.getAuthority();
-	                }
-	                HashMap<String, String> map = new HashMap<>();
+		for (int i = 0; i < l.size(); i++) {
+			if ((userDto.getUsername().equals(l.get(i).getUsername()))
+					&& (userDto.getPassword().equals(l.get(i).getPassword()))) {
+				UserPrincipal principal = new UserPrincipal(modelMapper.map(userDto, User.class));
+				String token = JWT.create().withSubject(principal.getUsername())
+						.withExpiresAt(new Date(System.currentTimeMillis()
+								+ com.thp.spring.simplecontext.security.JwtProperties.EXPIRATION_TIME)) // EXPIRATION_TIME
+																										// : property
+																										// created
+																										// earlier
+						.sign(HMAC512(com.thp.spring.simplecontext.security.JwtProperties.SECRET.getBytes()));
+				String auth = "";
+				for (Iterator<? extends GrantedAuthority> iter = principal.getAuthorities().iterator(); iter
+						.hasNext();) {
+					GrantedAuthority element = iter.next();
+					auth = auth + element.getAuthority();
+				}
+				HashMap<String, String> map = new HashMap<>();
 
-	                Long id = userDtos.get(i).getIdUser() ;
-	                String idString = Long.toString(id);
-	                map.put("username", principal.getUsername());
-	                map.put("role", "ROLE_" + userDtos.get(i).getRoles());
-	                map.put("token", token);
-	                map.put("user_id", idString);
-	                return map;
-	            }
-	        }
+				long id = l.get(i).getIdUser();
+				String idString = Long.toString(id);
 
-	        boolean username = false;
-	        boolean password = false;
+				map.put("username", principal.getUsername());
+				map.put("role", "ROLE_" + l.get(i).getRoles());
+				map.put("token", token);
+				map.put("user_id", idString);
+				return map;
+			}
+		}
 
-	        for (int i = 0; i < userDtos.size(); i++) {
-	            if (userDto.getUsername().equals(userDtos.get(i).getUsername())) {
-	                username = true;
-	            }
-	            if (userDto.getPassword().equals(userDtos.get(i).getPassword())) {
-	                password = true;
-	            }
-
-	        }
-	        // In case of non existing USER with the username and password credentials fulfilled in the form
-	        if (!username | !password) {
-				throw new Error("username or password incorrect") ;
-	        }
-	        return null;
-	    }
-
-	
+		return null;
+	}
 
 }
