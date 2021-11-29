@@ -15,13 +15,26 @@ import com.thp.spring.simplecontext.repository.UserRepository;
 import com.thp.spring.simplecontext.service.UserService;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	
+
+
 
 	private ModelMapper modelMapper = new ModelMapper();
+
+	
+	public UserServiceImpl() {
+	}
+
+	
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
 
 	@Override
 	public UserDto addUser(UserDto userDto) {
@@ -74,11 +87,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto findByUsername(String username) {
 		
-        List<UserDto> usersDto = findAllUser() ;
+		List<User> usersToDisplay = userRepository.findAll();
+		List<UserDto> usersDtoToDisplay = new ArrayList<UserDto>();
+
+		for (int i = 0; i < usersToDisplay.size(); i++) {
+
+			usersDtoToDisplay.add(modelMapper.map(usersToDisplay.get(i), UserDto.class));
+
+		}
+
         
-        for (int i = 0 ; i<usersDto.size(); i++){
-            if(usersDto.get(i).getUsername().equals(username)){
-                return usersDto.get(i) ;
+        for (int i = 0 ; i<usersDtoToDisplay.size(); i++){
+            if(usersDtoToDisplay.get(i).getUsername().equals(username)){
+                return usersDtoToDisplay.get(i) ;
             }
         }
         return null ;

@@ -49,25 +49,9 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "userFavori")
 	private Collection<Favoris> favorisUser;
 
-	private String firstname ;
-	
+
 	public User() {
 	}
-	
-	
-	
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-
-
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
 
 
 
@@ -75,9 +59,6 @@ public class User implements Serializable {
 		this.username = username;
 		this.password = password;
 	}
-
-
-
 
 	public String getPseudo() {
 		return pseudo;

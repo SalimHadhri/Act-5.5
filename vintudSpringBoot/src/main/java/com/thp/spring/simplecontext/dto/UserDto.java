@@ -23,7 +23,6 @@ public class UserDto implements Serializable {
 	private String phone;
 	private String address;
 	private int active;
-	private String firstname ;
 
 	private String roles = "";
 	private String permissions = "";
@@ -37,13 +36,7 @@ public class UserDto implements Serializable {
 	public UserDto() {
 	}
 
-	public String getFirstname() {
-		return firstname;
-	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
 
 	public String getPseudo() {
 		return pseudo;
@@ -167,13 +160,11 @@ public class UserDto implements Serializable {
 		return new ArrayList<>();
 	}
 
-	public UserDto(Long idUser, String firstname, String username, String pseudo, String mail, String password,
+	public UserDto(Long idUser, String username, String pseudo, String mail, String password,
 			String phone, String address, int active, String roles, String permissions,
 			Collection<Recherche> recherches, Collection<Announcement> annoncementsUser,
 			Collection<Favoris> favorisUser) {
-		super();
 		this.idUser = idUser;
-		this.firstname = firstname;
 		this.username = username;
 		this.pseudo = pseudo;
 		this.mail = mail;

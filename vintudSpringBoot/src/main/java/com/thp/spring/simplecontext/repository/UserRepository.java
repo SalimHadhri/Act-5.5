@@ -8,8 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thp.spring.simplecontext.entity.User;
 
 @Repository
-@Transactional(propagation = Propagation.MANDATORY)
 public interface UserRepository extends JpaRepository<User, Long> {
 
 
+	
+	User findByUsername(String username) ;
+	
+	
 }

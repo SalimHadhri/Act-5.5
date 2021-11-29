@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.auth0.jwt.JWT;
 import com.thp.spring.simplecontext.dto.UserDto;
 import com.thp.spring.simplecontext.entity.User;
-import com.thp.spring.simplecontext.repository.UserRepository;
 import com.thp.spring.simplecontext.security.UserPrincipal;
 import com.thp.spring.simplecontext.service.UserService;
 

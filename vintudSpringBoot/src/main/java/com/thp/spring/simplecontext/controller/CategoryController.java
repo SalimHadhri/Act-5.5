@@ -3,7 +3,6 @@ package com.thp.spring.simplecontext.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.thp.spring.simplecontext.dto.CategoryDto;
 import com.thp.spring.simplecontext.service.CategoryService;
@@ -39,21 +37,21 @@ public class CategoryController {
 	@GetMapping(value = "/ListCategory")
 	public String findAllCatgory(Model model) {
 
-			List<CategoryDto> categoryDtosToView = categoryService.getListCategory();
+		List<CategoryDto> categoryDtosToView = categoryService.getListCategory();
 
-			model.addAttribute("listCategoriiiies", categoryDtosToView);
-			return "ListCategory";
-		
+		model.addAttribute("listCategoriiiies", categoryDtosToView);
+		return "ListCategory";
+
 	}
 
 	/********************************************************************************************************************************/
 
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable("id") Long id) {
-			categoryService.deleteCategroyById(id);
+		categoryService.deleteCategroyById(id);
 
-			return "redirect:/categoryManagement/ListCategory";
-		
+		return "redirect:/categoryManagement/ListCategory";
+
 	}
 
 	/*******************************************************************************************************************************/
@@ -62,13 +60,11 @@ public class CategoryController {
 	public String updateCategoryById(@PathVariable("id") Long id, @PathVariable("name") String name,
 			@PathVariable("description") String description) {
 
-			CategoryDto dto = new CategoryDto();
-			dto.setDescription(description);
-			dto.setName(name);
-			categoryService.updateById(id, dto);
-			return "redirect:/categoryManagement/ListCategory";
-
-		
+		CategoryDto dto = new CategoryDto();
+		dto.setDescription(description);
+		dto.setName(name);
+		categoryService.updateById(id, dto);
+		return "redirect:/categoryManagement/ListCategory";
 
 	}
 
@@ -76,9 +72,8 @@ public class CategoryController {
 
 	@PostMapping(value = "/addCategory")
 	public CategoryDto addCategory(@RequestBody CategoryDto categoryDto) {
-			CategoryDto categoryDtoAdded = categoryService.addCategory(categoryDto);
-			return categoryDtoAdded;
-		
+		CategoryDto categoryDtoAdded = categoryService.addCategory(categoryDto);
+		return categoryDtoAdded;
 
 	}
 
@@ -86,8 +81,8 @@ public class CategoryController {
 
 	@GetMapping(value = "/findCategory/{id}")
 	public CategoryDto findCategoryById(@PathVariable Long id) {
-			return categoryService.getCategoryById(id);
-		
+		return categoryService.getCategoryById(id);
+
 	}
 
 }
