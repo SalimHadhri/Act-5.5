@@ -2,6 +2,7 @@ package com.thp.spring.simplecontext.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Announcement")
@@ -38,7 +41,7 @@ public class Announcement implements Serializable {
 	private String localisation;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	@JoinColumn(name = "idUser", nullable=false, insertable = true, updatable = true)
 	private User user;
 
 	@ManyToOne
@@ -165,6 +168,7 @@ public class Announcement implements Serializable {
 		this.categoryAnnonce = categoryAnnonce;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}

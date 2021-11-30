@@ -72,13 +72,13 @@ public class SecurityGeneralConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/userManagement/auth").permitAll()
 				// user
 				.antMatchers(HttpMethod.GET, "/userManagement/ListAllUser").hasAnyRole("ADMIN", "MANAGER")
-				.antMatchers(HttpMethod.POST, "/userManagement/addUser").hasAnyRole("ADMIN", "USER")
+				.antMatchers(HttpMethod.POST, "/userManagement/addUser").permitAll()
 				.antMatchers(HttpMethod.PUT, "/userManagement/updateUser/{id}").hasRole("MANAGER")
 				.antMatchers(HttpMethod.GET, "/userManagement/findUser/{id}").hasRole("USER")
 				.antMatchers(HttpMethod.DELETE, "/userManagement/deleteUser/{id}").hasRole("ADMIN")
 				// announcement	
 				.antMatchers(HttpMethod.GET, "/announcementManagement/ListAnnouncement").hasAnyRole("ADMIN", "MANAGER")
-				.antMatchers(HttpMethod.POST, "/announcementManagement/addAnnouncement").hasAnyRole("ADMIN", "USER")
+				.antMatchers(HttpMethod.POST, "/announcementManagement/addAnnouncement").permitAll()
 				.antMatchers(HttpMethod.PUT, "/announcementManagement/updateAnnouncement/{id}").hasRole("MANAGER")
 				.antMatchers(HttpMethod.GET, "/announcementManagement/findAnnouncement/{id}").hasRole("USER")
 				.antMatchers(HttpMethod.DELETE, "/announcementManagement/deleteAnnouncement/{id}").hasRole("ADMIN")

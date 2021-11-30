@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,8 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -40,7 +44,7 @@ public class User implements Serializable {
 	
 	private String permissions = "";
 
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user", cascade = CascadeType.ALL,targetEntity=Announcement.class)
 	private List<Announcement> annoncements;
 	
 	
@@ -184,7 +188,7 @@ public class User implements Serializable {
 	}
 
 
-
+	@JsonIgnore
 	public List<Announcement> getAnnoncements() {
 		return annoncements;
 	}
