@@ -1,11 +1,8 @@
 package com.thp.spring.simplecontext.dto;
 
-import javax.annotation.sql.DataSourceDefinition;
-
 import com.thp.spring.simplecontext.entity.Category;
 import com.thp.spring.simplecontext.entity.User;
 
-@DataSourceDefinition(className = "Announcement", name = "AnnouncementDto")
 public class AnnouncementDto {
 
 	private Long idAnnouncement;
@@ -26,19 +23,11 @@ public class AnnouncementDto {
 
 	private String localisation;
 
-	private User userAnnouncement;
+	private User user;
 
 	private Category categoryAnnonce;
 
 	public AnnouncementDto() {
-	}
-
-	public User getUserAnnouncement() {
-		return userAnnouncement;
-	}
-
-	public void setUserAnnouncement(User userAnnouncement) {
-		this.userAnnouncement = userAnnouncement;
 	}
 
 	public Category getCategoryAnnonce() {
@@ -121,33 +110,17 @@ public class AnnouncementDto {
 		this.localisation = localisation;
 	}
 
-	@Override
-	public String toString() {
-		return "AnnouncementDto [idAnnouncement=" + idAnnouncement + ", title=" + title + ", description=" + description
-				+ ", price=" + price + ", picture=" + picture + ", publication_date=" + publication_date
-				+ ", is_available=" + is_available + ", view_number=" + view_number + ", localisation=" + localisation
-				+ "]";
+	public User getUser() {
+		return user;
 	}
 
-	public AnnouncementDto(String title, String description, int price, String picture,
-			String publication_date, boolean is_available, int view_number, String localisation, User userAnnouncement,
-			Category categoryAnnonce) {
-		this.title = title;
-		this.description = description;
-		this.price = price;
-		this.picture = picture;
-		this.publication_date = publication_date;
-		this.is_available = is_available;
-		this.view_number = view_number;
-		this.localisation = localisation;
-		this.userAnnouncement = userAnnouncement;
-		this.categoryAnnonce = categoryAnnonce;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public AnnouncementDto(Long idAnnouncement, String title, String description, int price, String picture,
-			String publication_date, boolean is_available, int view_number, String localisation, User userAnnouncement,
+			String publication_date, boolean is_available, int view_number, String localisation, User user,
 			Category categoryAnnonce) {
-		super();
 		this.idAnnouncement = idAnnouncement;
 		this.title = title;
 		this.description = description;
@@ -157,11 +130,32 @@ public class AnnouncementDto {
 		this.is_available = is_available;
 		this.view_number = view_number;
 		this.localisation = localisation;
-		this.userAnnouncement = userAnnouncement;
+		this.user = user;
 		this.categoryAnnonce = categoryAnnonce;
+	}
+
+	public AnnouncementDto(String title, String description, int price, String picture, String publication_date,
+			boolean is_available, int view_number, String localisation, User user, Category categoryAnnonce) {
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.picture = picture;
+		this.publication_date = publication_date;
+		this.is_available = is_available;
+		this.view_number = view_number;
+		this.localisation = localisation;
+		this.user = user;
+		this.categoryAnnonce = categoryAnnonce;
+	}
+
+	@Override
+	public String toString() {
+		return "AnnouncementDto [idAnnouncement=" + idAnnouncement + ", title=" + title + ", description=" + description
+				+ ", price=" + price + ", picture=" + picture + ", publication_date=" + publication_date
+				+ ", is_available=" + is_available + ", view_number=" + view_number + ", localisation=" + localisation
+				+ ", user=" + user + ", categoryAnnonce=" + categoryAnnonce + "]";
 	}
 
 	
 	
-
 }

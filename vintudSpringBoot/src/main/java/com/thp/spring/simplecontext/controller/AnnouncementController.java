@@ -32,9 +32,8 @@ public class AnnouncementController {
 	@GetMapping(value = "/ListAnnouncement")
 	public List<AnnouncementDto> findAllAnnouncement() {
 
-		List<AnnouncementDto> announcementDtosToView = announcementService.consulterAnnonces();
 
-		return announcementDtosToView;
+		return announcementService.consulterAnnonces();
 
 	}
 

@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thp.spring.simplecontext.entity.Announcement;
 
 @Repository
-@Transactional(propagation = Propagation.MANDATORY)
 public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
 
 }

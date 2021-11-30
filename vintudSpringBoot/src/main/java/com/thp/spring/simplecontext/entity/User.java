@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,15 +37,33 @@ public class User implements Serializable {
 
 	@JsonProperty("roles")
 	private String roles = "";
+	
 	private String permissions = "";
 
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+	private List<Announcement> annoncements;
+	
+	
+	
+	public List<String> getRoleList() {
+		if (this.roles.length() > 0) {
+			return Arrays.asList(this.roles.split(","));
+		}
+		return new ArrayList<>();
+	}
+
+	public List<String> getPermissionList() {
+		if (this.permissions.length() > 0) {
+			return Arrays.asList(this.permissions.split(","));
+		}
+		return new ArrayList<>();
+	}
 	private int active;
 
 	@OneToMany(mappedBy = "userRecherche")
 	private Collection<Recherche> recherches;
 
-	@OneToMany(mappedBy = "userAnnouncement")
-	private Collection<Announcement> annoncementsUser;
+
 
 	@OneToMany(mappedBy = "userFavori")
 	private Collection<Favoris> favorisUser;
@@ -116,13 +135,7 @@ public class User implements Serializable {
 		this.recherches = recherches;
 	}
 
-	public Collection<Announcement> getAnnoncementsUser() {
-		return annoncementsUser;
-	}
 
-	public void setAnnoncementsUser(Collection<Announcement> annoncementsUser) {
-		this.annoncementsUser = annoncementsUser;
-	}
 
 	public Collection<Favoris> getFavorisUser() {
 		return favorisUser;
@@ -160,19 +173,7 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
-	public List<String> getRoleList() {
-		if (this.roles.length() > 0) {
-			return Arrays.asList(this.roles.split(","));
-		}
-		return new ArrayList<>();
-	}
 
-	public List<String> getPermissionList() {
-		if (this.permissions.length() > 0) {
-			return Arrays.asList(this.permissions.split(","));
-		}
-		return new ArrayList<>();
-	}
 
 	public int getActive() {
 		return active;
@@ -182,9 +183,23 @@ public class User implements Serializable {
 		this.active = active;
 	}
 
+
+
+	public List<Announcement> getAnnoncements() {
+		return annoncements;
+	}
+
+
+
+	public void setAnnoncements(List<Announcement> annoncements) {
+		this.annoncements = annoncements;
+	}
+
+
+
 	public User(Long idUser, String username, String pseudo, String mail, String password, String phone, String address,
 			String roles, String permissions, int active, Collection<Recherche> recherches,
-			Collection<Announcement> annoncementsUser, Collection<Favoris> favorisUser) {
+			List<Announcement> annoncements, Collection<Favoris> favorisUser) {
 		this.idUser = idUser;
 		this.username = username;
 		this.pseudo = pseudo;
@@ -196,8 +211,44 @@ public class User implements Serializable {
 		this.permissions = permissions;
 		this.active = active;
 		this.recherches = recherches;
-		this.annoncementsUser = annoncementsUser;
+		this.annoncements = annoncements;
 		this.favorisUser = favorisUser;
 	}
+
+
+
+	public User(String username, String pseudo, String mail, String password, String phone, String address,
+			String roles, String permissions, int active, Collection<Recherche> recherches,
+			List<Announcement> annoncements, Collection<Favoris> favorisUser) {
+		this.username = username;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.roles = roles;
+		this.permissions = permissions;
+		this.active = active;
+		this.recherches = recherches;
+		this.annoncements = annoncements;
+		this.favorisUser = favorisUser;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "User [idUser=" + idUser + ", username=" + username + ", pseudo=" + pseudo + ", mail=" + mail
+				+ ", password=" + password + ", phone=" + phone + ", address=" + address + ", roles=" + roles
+				+ ", permissions=" + permissions + ", active=" + active + ", recherches=" + recherches
+				+ ", annoncements=" + annoncements + ", favorisUser=" + favorisUser + "]";
+	}
+
+
+
+
+
+	
+	
 
 }

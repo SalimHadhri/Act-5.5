@@ -16,7 +16,6 @@ import com.thp.spring.simplecontext.repository.AnnouncementRepository;
 import com.thp.spring.simplecontext.service.AnnouncementService;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Autowired

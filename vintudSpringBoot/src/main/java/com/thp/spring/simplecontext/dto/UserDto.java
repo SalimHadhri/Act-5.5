@@ -29,7 +29,7 @@ public class UserDto implements Serializable {
 
 	private Collection<Recherche> recherches;
 
-	private Collection<Announcement> annoncementsUser;
+	private List<Announcement> annoncements;
 
 	private Collection<Favoris> favorisUser;
 
@@ -78,13 +78,6 @@ public class UserDto implements Serializable {
 		this.recherches = recherches;
 	}
 
-	public Collection<Announcement> getAnnoncementsUser() {
-		return annoncementsUser;
-	}
-
-	public void setAnnoncementsUser(Collection<Announcement> annoncementsUser) {
-		this.annoncementsUser = annoncementsUser;
-	}
 
 	public Collection<Favoris> getFavorisUser() {
 		return favorisUser;
@@ -160,10 +153,23 @@ public class UserDto implements Serializable {
 		return new ArrayList<>();
 	}
 
-	public UserDto(Long idUser, String username, String pseudo, String mail, String password,
-			String phone, String address, int active, String roles, String permissions,
-			Collection<Recherche> recherches, Collection<Announcement> annoncementsUser,
-			Collection<Favoris> favorisUser) {
+
+
+	public List<Announcement> getAnnoncements() {
+		return annoncements;
+	}
+
+
+
+	public void setAnnoncements(List<Announcement> annoncements) {
+		this.annoncements = annoncements;
+	}
+
+
+
+	public UserDto(Long idUser, String username, String pseudo, String mail, String password, String phone,
+			String address, int active, String roles, String permissions, Collection<Recherche> recherches,
+			List<Announcement> annoncements, Collection<Favoris> favorisUser) {
 		this.idUser = idUser;
 		this.username = username;
 		this.pseudo = pseudo;
@@ -175,8 +181,48 @@ public class UserDto implements Serializable {
 		this.roles = roles;
 		this.permissions = permissions;
 		this.recherches = recherches;
-		this.annoncementsUser = annoncementsUser;
+		this.annoncements = annoncements;
 		this.favorisUser = favorisUser;
 	}
+
+
+
+	public UserDto(String username, String pseudo, String mail, String password, String phone, String address,
+			int active, String roles, String permissions, Collection<Recherche> recherches,
+			List<Announcement> annoncements, Collection<Favoris> favorisUser) {
+		this.username = username;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.active = active;
+		this.roles = roles;
+		this.permissions = permissions;
+		this.recherches = recherches;
+		this.annoncements = annoncements;
+		this.favorisUser = favorisUser;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "UserDto [idUser=" + idUser + ", username=" + username + ", pseudo=" + pseudo + ", mail=" + mail
+				+ ", password=" + password + ", phone=" + phone + ", address=" + address + ", active=" + active
+				+ ", roles=" + roles + ", permissions=" + permissions + ", recherches=" + recherches + ", annoncements="
+				+ annoncements + ", favorisUser=" + favorisUser + "]";
+	}
+
+
+
+
+
+
+
+
+
+	
+	
 
 }

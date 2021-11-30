@@ -3,7 +3,6 @@ package com.thp.spring.simplecontext.service;
 import java.util.List;
 
 import com.thp.spring.simplecontext.dto.UserDto;
-import com.thp.spring.simplecontext.entity.User;
 
 public interface UserService {
 

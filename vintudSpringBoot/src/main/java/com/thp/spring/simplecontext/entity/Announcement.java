@@ -3,9 +3,11 @@ package com.thp.spring.simplecontext.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -35,8 +37,9 @@ public class Announcement implements Serializable {
 
 	private String localisation;
 
-	@ManyToOne
-	private User userAnnouncement;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	private User user;
 
 	@ManyToOne
 	private Category categoryAnnonce;
@@ -58,13 +61,7 @@ public class Announcement implements Serializable {
 		this.idAnnouncement = idAnnouncement;
 	}
 
-	public User getUserAnnouncement() {
-		return userAnnouncement;
-	}
 
-	public void setUserAnnouncement(User userAnnouncement) {
-		this.userAnnouncement = userAnnouncement;
-	}
 
 	public Category getCategoryAnnonce() {
 		return categoryAnnonce;
@@ -138,12 +135,53 @@ public class Announcement implements Serializable {
 		this.localisation = localisation;
 	}
 
+	public Announcement(Long idAnnouncement, String title, String description, int price, String picture,
+			String publication_date, boolean is_available, int view_number, String localisation, User user,
+			Category categoryAnnonce) {
+		this.idAnnouncement = idAnnouncement;
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.picture = picture;
+		this.publication_date = publication_date;
+		this.is_available = is_available;
+		this.view_number = view_number;
+		this.localisation = localisation;
+		this.user = user;
+		this.categoryAnnonce = categoryAnnonce;
+	}
+
+	public Announcement(String title, String description, int price, String picture, String publication_date,
+			boolean is_available, int view_number, String localisation, User user, Category categoryAnnonce) {
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.picture = picture;
+		this.publication_date = publication_date;
+		this.is_available = is_available;
+		this.view_number = view_number;
+		this.localisation = localisation;
+		this.user = user;
+		this.categoryAnnonce = categoryAnnonce;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "Announcement [id=" + idAnnouncement + ", title=" + title + ", description=" + description + ", price="
-				+ price + ", picture=" + picture + ", publication_date=" + publication_date + ", is_available="
-				+ is_available + ", view_number=" + view_number + ", localisation=" + localisation
-				+ ", userAnnouncement=" + userAnnouncement + ", categoryAnnonce=" + categoryAnnonce + "]";
+		return "Announcement [idAnnouncement=" + idAnnouncement + ", title=" + title + ", description=" + description
+				+ ", price=" + price + ", picture=" + picture + ", publication_date=" + publication_date
+				+ ", is_available=" + is_available + ", view_number=" + view_number + ", localisation=" + localisation
+				+ ", user=" + user + ", categoryAnnonce=" + categoryAnnonce + "]";
 	}
+	
+
+
 
 }
